@@ -1,1 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RRG Connect</title>
 
+  <!-- Social preview (shows thumbnail in iMessage, etc.) -->
+  <meta property="og:title" content="Revenue Recovery Group" />
+  <meta property="og:description" content="Customer Service Video" />
+  <meta property="og:type" content="website" />
+  <!-- IMPORTANT: we will replace these two URLs after you upload the image/video -->
+  <meta property="og:image" content="https://example.com/thumbnail.jpg" />
+  <meta property="og:url" content="https://rrgconnect.com/" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Revenue Recovery Group" />
+  <meta name="twitter:description" content="Customer Service Video" />
+  <meta name="twitter:image" content="https://example.com/thumbnail.jpg" />
+
+  <style>
+    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background:#0b0b0f; color:#fff; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 28px 18px 60px; }
+    .brand { font-weight: 700; letter-spacing: .2px; opacity:.95; }
+    .card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; overflow:hidden; margin-top: 16px; }
+    .header { padding: 16px 16px 0; }
+    .sub { opacity: .75; font-size: 14px; margin-top: 6px; }
+    .video { width: 100%; aspect-ratio: 16/9; background:#000; }
+    .footer { padding: 14px 16px 18px; font-size: 13px; opacity:.7; line-height: 1.35; }
+    a { color:#9ad0ff; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">Revenue Recovery Group</div>
+
+    <div class="card">
+      <div class="header">
+        <div style="font-size:18px;font-weight:650;">Customer Service Video</div>
+        <div class="sub">If you received this link, it’s because you’re in a follow-up sequence.</div>
+      </div>
+
+      <!-- Replace src with your hosted video URL (Step 4) -->
+      <video class="video" controls playsinline preload="metadata" poster="thumbnail.jpg">
+        <source src="video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="footer">
+        Questions? Reply to the text message thread.<br/>
+        <span style="opacity:.55;">RRG Connect • rrgconnect.com</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
