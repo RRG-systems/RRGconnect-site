@@ -1,155 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Revenue Recovery Group</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      content: ["*"],
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['"Playfair Display"', 'serif'],
-            body: ['Inter', 'sans-serif']
-          },
-          colors: {
-            charcoal: '#0F172A',
-            slate: '#1E2937',
-            ember: '#C2410C',
-            offwhite: '#F8FAFC'
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue Recovery Group | Recover Revenue You Already Own</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            content: ["*"],
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['"Playfair Display"', 'serif'],
+                        body: ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        charcoal: '#0F172A',
+                        slate: '#1E2937',
+                        ember: '#C2410C',
+                        offwhite: '#F8FAFC'
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2 { font-family: 'Playfair Display', serif; }
-  </style>
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .hero-bg {
+            background: linear-gradient(135deg, #0F172A 0%, #1E2937 100%);
+            position: relative;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(194,65,12,0.03) 20px, rgba(194,65,12,0.03) 40px);
+            pointer-events: none;
+        }
+        .section-header { position: relative; }
+        .section-header:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 64px;
+            height: 3px;
+            background: #C2410C;
+        }
+    </style>
 </head>
-<body class="bg-charcoal text-offwhite min-h-screen">
+<body class="bg-charcoal text-offwhite">
 
-  <nav class="fixed top-0 left-0 right-0 bg-charcoal/95 backdrop-blur-md z-50 border-b border-slate">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 bg-ember rounded-full flex items-center justify-center text-white font-bold text-2xl">R</div>
-        <span class="text-2xl font-bold tracking-tight">Revenue Recovery Group</span>
-      </div>
-      <a href="index.html" class="text-sm font-medium hover:text-ember">← Back to Homepage</a>
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 right-0 bg-charcoal/95 backdrop-blur-md z-50 border-b border-slate">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-ember rounded-full flex items-center justify-center text-white font-bold text-2xl">R</div>
+                <span class="text-2xl font-bold tracking-tight">Revenue Recovery Group</span>
+            </div>
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="#problem" class="hover:text-ember transition">Problem</a>
+                <a href="#what-we-do" class="hover:text-ember transition">What We Do</a>
+                <a href="#how-it-works" class="hover:text-ember transition">How It Works</a>
+                <a href="#why-rrg" class="hover:text-ember transition">Why RRG</a>
+                <a href="#industries" class="hover:text-ember transition">Industries</a>
+                <a href="contact.html" class="bg-ember hover:bg-orange-700 px-6 py-3 rounded-full text-sm font-semibold transition">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" class="hero-bg h-screen flex items-center pt-20">
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <h1 class="text-6xl md:text-7xl font-bold leading-none tracking-tighter mb-6">
+                The revenue sitting in your database<br>isn’t dead.
+            </h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto text-slate-300 mb-12">
+                Revenue Recovery Group reactivates stale, dormant, and underworked leads through structured follow-up systems, AI-assisted communication, and disciplined execution.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-ember hover:bg-orange-700 text-white px-10 py-5 rounded-2xl text-lg font-semibold transition">Get Started</a>
+                <a href="#how-it-works" class="border border-slate hover:border-offwhite px-10 py-5 rounded-2xl text-lg font-medium transition">See How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section id="problem" class="py-24 bg-slate">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold section-header inline-block">Most businesses don’t just lose leads.<br>They lose revenue.</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="text-lg text-slate-300">
+                    <p>You invest heavily in lead generation. You pay for inquiries, conversations, and opportunities.</p>
+                    <p class="mt-6">Then timing slips, follow-up breaks, systems disconnect, and databases go cold. The revenue you already paid to acquire simply disappears.</p>
+                </div>
+                <div class="bg-charcoal p-10 rounded-3xl border border-slate">
+                    <div class="space-y-8 text-sm uppercase tracking-widest font-medium">
+                        <div class="flex justify-between"><span class="text-slate-400">Leads acquired</span><span class="font-mono text-ember">100%</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Effectively worked</span><span class="font-mono text-red-400">~28%</span></div>
+                        <div class="h-px bg-slate"></div>
+                        <div class="text-center text-ember font-semibold text-lg">The majority is often recoverable revenue</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section id="what-we-do" class="py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block">Recover the revenue hidden in your database</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
+                    <div class="text-ember text-sm font-medium mb-4">01</div>
+                    <h3 class="text-2xl font-semibold mb-3">Dead Lead Recovery</h3>
+                    <p class="text-slate-400">Systematic reactivation campaigns that bring back leads previously written off as lost.</p>
+                </div>
+                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
+                    <div class="text-ember text-sm font-medium mb-4">02</div>
+                    <h3 class="text-2xl font-semibold mb-3">Database Reactivation</h3>
+                    <p class="text-slate-400">Full-lifecycle re-engagement of dormant customer and prospect records.</p>
+                </div>
+                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
+                    <div class="text-ember text-sm font-medium mb-4">03</div>
+                    <h3 class="text-2xl font-semibold mb-3">AI-Assisted Follow-Up</h3>
+                    <p class="text-slate-400">Intelligent timing and messaging that scales personalized outreach without losing human nuance.</p>
+                </div>
+                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
+                    <div class="text-ember text-sm font-medium mb-4">04</div>
+                    <h3 class="text-2xl font-semibold mb-3">Human Conversion Support</h3>
+                    <p class="text-slate-400">Trained specialists for warm handoffs and high-stakes closing conversations.</p>
+                </div>
+                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
+                    <div class="text-ember text-sm font-medium mb-4">05</div>
+                    <h3 class="text-2xl font-semibold mb-3">Appointment Setting & Qualification</h3>
+                    <p class="text-slate-400">Precision qualification and scheduling that feeds your sales pipeline with ready opportunities.</p>
+                </div>
+                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
+                    <div class="text-ember text-sm font-medium mb-4">06</div>
+                    <h3 class="text-2xl font-semibold mb-3">Revenue Recovery Systems</h3>
+                    <p class="text-slate-400">Custom operational frameworks that prevent future leakage at the source.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="py-24 bg-slate">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block">How Revenue Recovery Works</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-ember text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">1</div>
+                    <h3 class="font-semibold mb-2">Identify</h3>
+                    <p class="text-slate-400">We audit your database and surface neglected, stale, or dormant opportunities.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-ember text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">2</div>
+                    <h3 class="font-semibold mb-2">Prioritize</h3>
+                    <p class="text-slate-400">We improve timing visibility and prioritize stronger moments to re-engage.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-ember text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">3</div>
+                    <h3 class="font-semibold mb-2">Re-engage</h3>
+                    <p class="text-slate-400">AI-assisted + human workflows execute precise, timely follow-up.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-ember text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">4</div>
+                    <h3 class="font-semibold mb-2">Convert</h3>
+                    <p class="text-slate-400">Qualified conversations are routed for warm transfer and closing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY RRG -->
+    <section id="why-rrg" class="py-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block">Why Revenue Recovery Group</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="space-y-8">
+                    <div><strong class="text-ember">Existing database value</strong><p class="text-slate-400 mt-2">We treat your current data as your most valuable asset — not a cost center.</p></div>
+                    <div><strong class="text-ember">Timing intelligence</strong><p class="text-slate-400 mt-2">We improve visibility into when opportunities are ready to be re-engaged.</p></div>
+                </div>
+                <div class="space-y-8">
+                    <div><strong class="text-ember">Operational consistency</strong><p class="text-slate-400 mt-2">Disciplined systems replace sporadic or forgotten follow-up.</p></div>
+                    <div><strong class="text-ember">AI + human balance</strong><p class="text-slate-400 mt-2">Technology accelerates, humans close.</p></div>
+                </div>
+                <div class="space-y-8">
+                    <div><strong class="text-ember">Conversion discipline</strong><p class="text-slate-400 mt-2">We measure recovered revenue, not just activity.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section id="industries" class="py-24 bg-slate">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block">Built for High-Value Revenue Recovery</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-charcoal p-8 rounded-3xl">
+                    <h3 class="text-2xl font-semibold mb-2">Lending / Mortgage</h3>
+                    <p class="text-slate-400">Reactivate stalled applications and dormant borrower databases.</p>
+                </div>
+                <div class="bg-charcoal p-8 rounded-3xl">
+                    <h3 class="text-2xl font-semibold mb-2">Real Estate</h3>
+                    <p class="text-slate-400">Re-engage past buyers, sellers, and expired listings.</p>
+                </div>
+                <div class="bg-charcoal p-8 rounded-3xl">
+                    <h3 class="text-2xl font-semibold mb-2">Recruiting</h3>
+                    <p class="text-slate-400">Revive candidate pipelines and talent pools.</p>
+                </div>
+                <div class="bg-charcoal p-8 rounded-3xl">
+                    <h3 class="text-2xl font-semibold mb-2">High-Ticket Services</h3>
+                    <p class="text-slate-400">Recover lost opportunities in any follow-up-dependent industry.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNOLOGY + HUMAN MODEL -->
+    <section class="py-24">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-bold mb-8 section-header inline-block">Technology-Assisted. Human-Verified. Revenue-Focused.</h2>
+            <p class="max-w-2xl mx-auto text-lg text-slate-300">
+                AI accelerates discovery, prioritization, and outreach. Humans provide the trust, nuance, and closing power that turns conversations into recovered revenue.
+            </p>
+        </div>
+    </section>
+
+    <!-- FUTURE-READY -->
+    <section class="py-24 bg-slate">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block">Built for the Next Generation of Revenue Recovery</h2>
+            <div class="prose prose-invert max-w-none text-slate-300">
+                <p class="text-lg">Our platform is architected for continuous evolution — lifecycle detection, signal-based prioritization, and increasingly precise follow-up systems that grow with your business.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="py-24 border-t border-slate">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-bold mb-6">Start the Conversation</h2>
+            <p class="text-xl text-slate-300 mb-10">Tell us about your database, lead flow, or revenue recovery challenge. Our team will follow up as soon as possible.</p>
+            <a href="contact.html" class="inline-block bg-ember hover:bg-orange-700 text-white px-12 py-6 rounded-3xl text-xl font-semibold transition">Contact Revenue Recovery Group</a>
+        </div>
+    </section>
+
+    <!-- REAL ESTATE LINE -->
+    <div class="bg-slate py-8 text-center text-sm text-slate-400 border-t border-slate">
+        We also assist individuals with real estate inquiries, including buying, selling, and property-related services.
     </div>
-  </nav>
 
-  <div class="pt-24 pb-20 max-w-3xl mx-auto px-6">
-    <h1 class="text-5xl font-bold text-center mb-6">Contact Revenue Recovery Group</h1>
-
-    <p class="text-lg text-slate-300 text-center mb-6">
-      The MORE Companies assists individuals and businesses with revenue recovery, database reactivation, recruiting, real estate inquiries, lending-related opportunities, and follow-up systems.
-    </p>
-
-    <p class="text-xl text-slate-300 text-center mb-16">
-      Complete the form below to request information or a follow-up from our team.
-    </p>
-
-    <form action="https://formspree.io/f/mdawjdqq" method="POST" class="bg-slate p-10 rounded-3xl space-y-8">
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div>
-          <label class="block text-sm font-medium mb-2">Full Name</label>
-          <input
-            type="text"
-            name="full_name"
-            class="w-full bg-charcoal border border-slate rounded-2xl px-6 py-4 focus:outline-none focus:border-ember"
-            required
-          >
+    <!-- FOOTER -->
+    <footer class="bg-black py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-9 h-9 bg-ember rounded-full flex items-center justify-center text-white font-bold text-2xl">R</div>
+                    <div class="font-bold text-lg">Revenue Recovery Group</div>
+                </div>
+                <p class="text-xs text-slate-500">M+RE Recruiting LLC dba The MORE Companies</p>
+            </div>
+            <div class="space-y-3 text-sm">
+                <a href="contact.html" class="block hover:text-ember">Contact / Get Started</a>
+                <a href="privacy-policy.html" class="block hover:text-ember">Privacy Policy</a>
+                <a href="terms-of-service.html" class="block hover:text-ember">Terms of Service</a>
+            </div>
+            <div class="text-xs text-slate-500 md:col-span-2">
+                © 2026 Revenue Recovery Group. All rights reserved.
+            </div>
         </div>
-
-        <div>
-          <label class="block text-sm font-medium mb-2">Company Name</label>
-          <input
-            type="text"
-            name="company_name"
-            class="w-full bg-charcoal border border-slate rounded-2xl px-6 py-4 focus:outline-none focus:border-ember"
-          >
-        </div>
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium mb-2">Email Address</label>
-        <input
-          type="email"
-          name="email"
-          class="w-full bg-charcoal border border-slate rounded-2xl px-6 py-4 focus:outline-none focus:border-ember"
-          required
-        >
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium mb-2">Phone Number</label>
-        <input
-          type="tel"
-          name="phone"
-          class="w-full bg-charcoal border border-slate rounded-2xl px-6 py-4 focus:outline-none focus:border-ember"
-          required
-        >
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium mb-2">I’m interested in:</label>
-        <select
-          name="inquiry_type"
-          class="w-full bg-charcoal border border-slate rounded-2xl px-6 py-4 focus:outline-none focus:border-ember"
-        >
-          <option value="Buying a home">Buying a home</option>
-          <option value="Selling a home">Selling a home</option>
-          <option value="Real estate services">Real estate services</option>
-          <option value="Coaching">Coaching</option>
-          <option value="Recruiting">Recruiting</option>
-          <option value="Revenue recovery">Revenue recovery</option>
-          <option value="Database reactivation">Database reactivation</option>
-          <option value="General inquiry">General inquiry</option>
-        </select>
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium mb-2">Message (optional)</label>
-        <textarea
-          name="message"
-          class="w-full bg-charcoal border border-slate rounded-3xl px-6 py-4 h-32 focus:outline-none focus:border-ember"
-        ></textarea>
-      </div>
-
-      <div class="bg-charcoal border border-slate p-6 rounded-2xl text-sm leading-relaxed text-slate-300">
-        By providing your phone number, you agree to receive text messages from M+RE Recruiting LLC dba The MORE Companies regarding your inquiry, services, and related updates. Message frequency varies. Message and data rates may apply. Reply STOP to opt out and HELP for help. Consent is not a condition of purchase.
-        <a href="privacy-policy.html" class="text-ember hover:underline">View our Privacy Policy</a> and
-        <a href="terms-of-service.html" class="text-ember hover:underline">Terms of Service</a>.
-      </div>
-
-      <div class="flex items-start gap-3">
-        <input
-          type="checkbox"
-          id="sms_consent"
-          name="sms_consent"
-          value="yes"
-          class="mt-1"
-        >
-        <label for="sms_consent" class="text-sm text-slate-300 leading-relaxed">
-          I agree to receive text messages from M+RE Recruiting LLC dba The MORE Companies regarding my inquiry, services, and related updates.
-        </label>
-      </div>
-
-      <button type="submit" class="w-full bg-ember hover:bg-orange-700 text-white py-6 rounded-3xl text-lg font-semibold transition">
-        Submit Inquiry
-      </button>
-    </form>
-  </div>
-
-  <div class="bg-slate py-8 text-center text-sm text-slate-400 border-t border-slate">
-    We also assist individuals with real estate inquiries, including buying, selling, and property-related services.
-  </div>
+    </footer>
 
 </body>
 </html>
