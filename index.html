@@ -5,279 +5,593 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revenue Recovery Group | Recover Revenue You Already Own</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             content: ["*"],
             theme: {
                 extend: {
                     fontFamily: {
-                        heading: ['"Playfair Display"', 'serif'],
                         body: ['Inter', 'sans-serif']
-                    },
-                    colors: {
-                        charcoal: '#0F172A',
-                        slate: '#1E2937',
-                        ember: '#C2410C',
-                        offwhite: '#F8FAFC'
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .hero-bg {
-            background: linear-gradient(135deg, #0F172A 0%, #1E2937 100%);
-            position: relative;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: #000;
         }
-        .hero-bg::before {
-            content: '';
-            position: absolute;
+        
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Signal wave animation */
+        @keyframes waveDrift {
+            0% {
+                transform: translateX(-3%) translateY(0) scaleY(1);
+            }
+            50% {
+                transform: translateX(0%) translateY(-10px) scaleY(1.05);
+            }
+            100% {
+                transform: translateX(3%) translateY(8px) scaleY(0.97);
+            }
+        }
+
+        /* Ultra-bright fiber strand animation */
+        @keyframes ultraFiberFlow {
+            0% {
+                stroke-dashoffset: 0;
+            }
+            100% {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        .signal-wave-wrap {
+            position: fixed;
             inset: 0;
-            background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(194,65,12,0.03) 20px, rgba(194,65,12,0.03) 40px);
+            overflow: hidden;
             pointer-events: none;
+            z-index: 0;
         }
-        .section-header { position: relative; }
+
+        .signal-wave {
+            position: absolute;
+            left: -20vw;
+            top: 15%;
+            width: 140vw;
+            height: 60vh;
+            opacity: 0.64;
+            filter: blur(0.05px);
+            animation: waveDrift 25s ease-in-out infinite;
+        }
+
+        .wave-line-outer {
+            fill: none;
+            stroke: rgba(255,255,255,0.042);
+            stroke-width: 0.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .wave-line-mid {
+            fill: none;
+            stroke: rgba(255,255,255,0.10);
+            stroke-width: 0.65;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .wave-line-inner {
+            fill: none;
+            stroke: rgba(245,255,255,0.20);
+            stroke-width: 0.75;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .wave-line-core {
+            fill: none;
+            stroke: rgba(240,255,252,0.35);
+            stroke-width: 0.9;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#softGlow);
+        }
+
+        .wave-line-hot {
+            fill: none;
+            stroke: rgba(255,255,255,0.44);
+            stroke-width: 1.15;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#hotGlow);
+        }
+
+        .wave-line-cyan {
+            fill: none;
+            stroke: rgba(200,255,250,0.14);
+            stroke-width: 0.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#softGlow);
+        }
+
+        .wave-line-twist {
+            fill: none;
+            stroke: rgba(255,255,255,0.075);
+            stroke-width: 0.65;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ULTRA-BRIGHT HOT FIBER STRANDS - the 2 final luminous threads */
+        .wave-ultra-fiber-main {
+            fill: none;
+            stroke: rgba(255,255,255,0.62);
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#ultraFiberGlow);
+            stroke-dasharray: 800 1000;
+            animation: ultraFiberFlow 28s linear infinite;
+        }
+
+        .wave-ultra-fiber-accent {
+            fill: none;
+            stroke: rgba(225,255,250,0.44);
+            stroke-width: 1.3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#ultraFiberGlow);
+            stroke-dasharray: 800 1000;
+            animation: ultraFiberFlow 30s linear infinite;
+        }
+
+        /* RRG Logo */
+        .rrg-logo {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50%;
+            backdrop-filter: blur(8px);
+            color: white;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-header { 
+            position: relative; 
+            display: inline-block;
+        }
+
         .section-header:after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 0;
-            width: 64px;
-            height: 3px;
-            background: #C2410C;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-primary {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 1rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: white;
+            color: black;
+            border-color: white;
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: transparent;
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 1rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link {
+            color: white;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 0.7;
         }
     </style>
 </head>
-<body class="bg-charcoal text-offwhite">
+<body class="bg-black text-white">
 
-    <!-- NAV -->
-    <nav class="fixed top-0 left-0 right-0 bg-charcoal/95 backdrop-blur-md z-50 border-b border-slate">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-ember rounded-full flex items-center justify-center text-white font-bold text-2xl">R</div>
-                <span class="text-2xl font-bold tracking-tight">Revenue Recovery Group</span>
-            </div>
-            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-                <a href="#problem" class="hover:text-ember transition">Problem</a>
-                <a href="#what-we-do" class="hover:text-ember transition">What We Do</a>
-                <a href="#how-it-works" class="hover:text-ember transition">How It Works</a>
-                <a href="#why-rrg" class="hover:text-ember transition">Why RRG</a>
-                <a href="#industries" class="hover:text-ember transition">Industries</a>
-                <a href="contact.html" class="bg-ember hover:bg-orange-700 px-6 py-3 rounded-full text-sm font-semibold transition">Get Started</a>
-            </div>
-        </div>
-    </nav>
+    <!-- Signal intelligence wave background - variable density with ultra-bright hot fiber strands -->
+    <div class="signal-wave-wrap">
+        <svg class="signal-wave" viewBox="0 0 1600 650" preserveAspectRatio="none">
+            <defs>
+                <filter id="softGlow">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                <filter id="hotGlow">
+                    <feGaussianBlur stdDeviation="6.5" result="blur"/>
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                <filter id="ultraFiberGlow" x="-20%" y="-80%" width="140%" height="260%">
+                    <feGaussianBlur stdDeviation="6" result="blur"/>
+                    <feGaussianBlur stdDeviation="12" result="wideBlur"/>
+                    <feMerge>
+                        <feMergeNode in="wideBlur"/>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
 
-    <!-- HERO -->
-    <section id="hero" class="hero-bg h-screen flex items-center pt-20">
-        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-            <h1 class="text-6xl md:text-7xl font-bold leading-none tracking-tighter mb-6">
-                The revenue sitting in your database<br>isn’t dead.
-            </h1>
-            <p class="text-xl md:text-2xl max-w-2xl mx-auto text-slate-300 mb-12">
-                Revenue Recovery Group reactivates stale, dormant, and underworked leads through structured follow-up systems, AI-assisted communication, and disciplined execution.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="contact.html" class="bg-ember hover:bg-orange-700 text-white px-10 py-5 rounded-2xl text-lg font-semibold transition">Get Started</a>
-                <a href="#how-it-works" class="border border-slate hover:border-offwhite px-10 py-5 rounded-2xl text-lg font-medium transition">See How It Works</a>
-            </div>
-        </div>
-    </section>
+            <!-- BASE RIBBON CONTOUR LINES (existing structure) -->
+            
+            <!-- OUTER GHOST LAYER - far edges, sparse (opacity 0.035-0.06) -->
+            <path class="wave-line-outer" d="M -100,325 C 250,60 450,590 800,325 S 1250,80 1700,325" style="transform: translateY(-110px)"/>
+            <path class="wave-line-outer" d="M -100,328 C 250,63 450,593 800,328 S 1250,83 1700,328" style="transform: translateY(-95px)"/>
+            <path class="wave-line-outer" d="M -100,331 C 250,66 450,596 800,331 S 1250,86 1700,331" style="transform: translateY(-80px)"/>
+            <path class="wave-line-outer" d="M -100,334 C 250,69 450,599 800,334 S 1250,89 1700,334" style="transform: translateY(-65px)"/>
+            <path class="wave-line-outer" d="M -100,337 C 250,72 450,602 800,337 S 1250,92 1700,337" style="transform: translateY(-50px)"/>
 
-    <!-- PROBLEM -->
-    <section id="problem" class="py-24 bg-slate">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold section-header inline-block">Most businesses don’t just lose leads.<br>They lose revenue.</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="text-lg text-slate-300">
-                    <p>You invest heavily in lead generation. You pay for inquiries, conversations, and opportunities.</p>
-                    <p class="mt-6">Then timing slips, follow-up breaks, systems disconnect, and databases go cold. The revenue you already paid to acquire simply disappears.</p>
+            <!-- MID RIBBON LAYER - transition zone (opacity 0.08-0.14) -->
+            <path class="wave-line-mid" d="M -100,340 C 250,75 450,605 800,340 S 1250,95 1700,340" style="transform: translateY(-42px)"/>
+            <path class="wave-line-mid" d="M -100,343 C 250,78 450,608 800,343 S 1250,98 1700,343" style="transform: translateY(-34px)"/>
+            <path class="wave-line-mid" d="M -100,346 C 250,81 450,611 800,346 S 1250,101 1700,346" style="transform: translateY(-26px)"/>
+            <path class="wave-line-mid" d="M -100,349 C 250,84 450,614 800,349 S 1250,104 1700,349" style="transform: translateY(-18px)"/>
+
+            <!-- INNER RIBBON CLUSTER - densifying (opacity 0.16-0.26) -->
+            <path class="wave-line-inner" d="M -100,270 C 250,30 450,560 800,270 S 1250,50 1700,270" style="transform: translateY(-52px)"/>
+            <path class="wave-line-inner" d="M -100,272 C 250,32 450,562 800,272 S 1250,52 1700,272" style="transform: translateY(-48px)"/>
+            <path class="wave-line-inner" d="M -100,274 C 250,34 450,564 800,274 S 1250,54 1700,274" style="transform: translateY(-44px)"/>
+            <path class="wave-line-inner" d="M -100,276 C 250,36 450,566 800,276 S 1250,56 1700,276" style="transform: translateY(-40px)"/>
+            <path class="wave-line-inner" d="M -100,278 C 250,38 450,568 800,278 S 1250,58 1700,278" style="transform: translateY(-36px)"/>
+            <path class="wave-line-inner" d="M -100,280 C 250,40 450,570 800,280 S 1250,60 1700,280" style="transform: translateY(-32px)"/>
+            <path class="wave-line-inner" d="M -100,282 C 250,42 450,572 800,282 S 1250,62 1700,282" style="transform: translateY(-28px)"/>
+            <path class="wave-line-inner" d="M -100,284 C 250,44 450,574 800,284 S 1250,64 1700,284" style="transform: translateY(-24px)"/>
+
+            <!-- CORE RIDGE LAYER - tightly compressed (opacity 0.28-0.38) -->
+            <path class="wave-line-core" d="M -100,265 C 250,25 450,555 800,265 S 1250,45 1700,265" style="transform: translateY(-20px)"/>
+            <path class="wave-line-core" d="M -100,267 C 250,27 450,557 800,267 S 1250,47 1700,267" style="transform: translateY(-16px)"/>
+            <path class="wave-line-core" d="M -100,269 C 250,29 450,559 800,269 S 1250,49 1700,269" style="transform: translateY(-12px)"/>
+            <path class="wave-line-core" d="M -100,271 C 250,31 450,561 800,271 S 1250,51 1700,271" style="transform: translateY(-8px)"/>
+            <path class="wave-line-core" d="M -100,273 C 250,33 450,563 800,273 S 1250,53 1700,273" style="transform: translateY(-4px)"/>
+
+            <!-- HOT RIDGE SPINE - brightest central cluster (opacity 0.38-0.45+) -->
+            <path class="wave-line-hot" d="M -100,275 C 250,35 450,565 800,275 S 1250,55 1700,275" style="transform: translateY(-2px)"/>
+            <path class="wave-line-hot" d="M -100,277 C 250,37 450,567 800,277 S 1250,57 1700,277" style="transform: translateY(0px)"/>
+            <path class="wave-line-hot" d="M -100,279 C 250,38 450,568 800,279 S 1250,58 1700,279" style="transform: translateY(2px); stroke: rgba(255,255,255,0.48); stroke-width: 1.2;"/>
+            <path class="wave-line-hot" d="M -100,281 C 250,37 450,567 800,281 S 1250,57 1700,281" style="transform: translateY(4px)"/>
+            <path class="wave-line-hot" d="M -100,283 C 250,36 450,566 800,283 S 1250,56 1700,283" style="transform: translateY(6px)"/>
+
+            <!-- CORE RIDGE LAYER LOWER - re-densifying (opacity 0.28-0.38) -->
+            <path class="wave-line-core" d="M -100,285 C 250,35 450,565 800,285 S 1250,55 1700,285" style="transform: translateY(8px)"/>
+            <path class="wave-line-core" d="M -100,287 C 250,33 450,563 800,287 S 1250,53 1700,287" style="transform: translateY(12px)"/>
+            <path class="wave-line-core" d="M -100,289 C 250,31 450,561 800,289 S 1250,51 1700,289" style="transform: translateY(16px)"/>
+            <path class="wave-line-core" d="M -100,291 C 250,29 450,559 800,291 S 1250,49 1700,291" style="transform: translateY(20px)"/>
+
+            <!-- INNER RIBBON LOWER - expanding again (opacity 0.16-0.26) -->
+            <path class="wave-line-inner" d="M -100,293 C 250,27 450,557 800,293 S 1250,47 1700,293" style="transform: translateY(24px)"/>
+            <path class="wave-line-inner" d="M -100,295 C 250,25 450,555 800,295 S 1250,45 1700,295" style="transform: translateY(28px)"/>
+            <path class="wave-line-inner" d="M -100,297 C 250,23 450,553 800,297 S 1250,43 1700,297" style="transform: translateY(32px)"/>
+            <path class="wave-line-inner" d="M -100,299 C 250,21 450,551 800,299 S 1250,41 1700,299" style="transform: translateY(36px)"/>
+            <path class="wave-line-inner" d="M -100,301 C 250,19 450,549 800,301 S 1250,39 1700,301" style="transform: translateY(40px)"/>
+            <path class="wave-line-inner" d="M -100,303 C 250,17 450,547 800,303 S 1250,37 1700,303" style="transform: translateY(44px)"/>
+
+            <!-- MID RIBBON LAYER LOWER - transition back out (opacity 0.08-0.14) -->
+            <path class="wave-line-mid" d="M -100,305 C 250,15 450,545 800,305 S 1250,35 1700,305" style="transform: translateY(48px)"/>
+            <path class="wave-line-mid" d="M -100,308 C 250,12 450,542 800,308 S 1250,32 1700,308" style="transform: translateY(54px)"/>
+            <path class="wave-line-mid" d="M -100,311 C 250,9 450,539 800,311 S 1250,29 1700,311" style="transform: translateY(60px)"/>
+            <path class="wave-line-mid" d="M -100,314 C 250,6 450,536 800,314 S 1250,26 1700,314" style="transform: translateY(66px)"/>
+
+            <!-- OUTER GHOST LAYER LOWER - far edges fading (opacity 0.035-0.06) -->
+            <path class="wave-line-outer" d="M -100,317 C 250,3 450,533 800,317 S 1250,23 1700,317" style="transform: translateY(72px)"/>
+            <path class="wave-line-outer" d="M -100,320 C 250,0 450,530 800,320 S 1250,20 1700,320" style="transform: translateY(80px)"/>
+            <path class="wave-line-outer" d="M -100,323 C 250,-3 450,527 800,323 S 1250,17 1700,323" style="transform: translateY(90px)"/>
+            <path class="wave-line-outer" d="M -100,326 C 250,-6 450,524 800,326 S 1250,14 1700,326" style="transform: translateY(100px)"/>
+
+            <!-- COLD CYAN ACCENT EDGES - technical framing -->
+            <path class="wave-line-cyan" d="M -100,260 C 250,15 450,540 800,260 S 1250,35 1700,260" style="transform: translateY(-56px)"/>
+            <path class="wave-line-cyan" d="M -100,305 C 250,20 450,550 800,305 S 1250,40 1700,305" style="transform: translateY(56px)"/>
+
+            <!-- SECONDARY TWIST LAYER - dimensional crossing (opacity 0.04-0.10) -->
+            <path class="wave-line-twist" d="M -100,325 C 250,500 450,150 800,325 S 1250,480 1700,325" style="transform: translateY(60px); opacity: 0.09;"/>
+            <path class="wave-line-twist" d="M -100,327 C 250,505 450,155 800,327 S 1250,485 1700,327" style="transform: translateY(66px); opacity: 0.07;"/>
+            <path class="wave-line-twist" d="M -100,329 C 250,510 450,160 800,329 S 1250,490 1700,329" style="transform: translateY(72px); opacity: 0.05;"/>
+            <path class="wave-line-twist" d="M -100,331 C 250,515 450,165 800,331 S 1250,495 1700,331" style="transform: translateY(78px); opacity: 0.03;"/>
+
+            <!-- ULTRA-BRIGHT HOT FIBER STRANDS - the 2 luminous threads (drawn last, on top) -->
+            <g class="wave-ultra-fibers">
+                <!-- Ultra-bright main fiber strand - the brightest fold line -->
+                <path class="wave-ultra-fiber-main" d="M -100,279 C 250,38 450,568 800,279 S 1250,58 1700,279" style="transform: translateY(0px)"/>
+                
+                <!-- Ultra-bright accent fiber strand - neighboring bright line -->
+                <path class="wave-ultra-fiber-accent" d="M -100,281 C 250,37 450,567 800,281 S 1250,57 1700,281" style="transform: translateY(4px)"/>
+            </g>
+        </svg>
+    </div>
+
+    <div class="content-wrapper">
+
+        <!-- NAV -->
+        <nav class="fixed top-0 left-0 right-0 bg-black/30 backdrop-blur-md z-50 border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="rrg-logo">RRG</div>
+                    <span class="text-2xl font-bold tracking-tight">Revenue Recovery Group</span>
                 </div>
-                <div class="bg-charcoal p-10 rounded-3xl border border-slate">
-                    <div class="space-y-8 text-sm uppercase tracking-widest font-medium">
-                        <div class="flex justify-between"><span class="text-slate-400">Leads acquired</span><span class="font-mono text-ember">100%</span></div>
-                        <div class="flex justify-between"><span class="text-slate-400">Effectively worked</span><span class="font-mono text-red-400">~28%</span></div>
-                        <div class="h-px bg-slate"></div>
-                        <div class="text-center text-ember font-semibold text-lg">The majority is often recoverable revenue</div>
+                <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                    <a href="#problem" class="nav-link">Problem</a>
+                    <a href="#what-we-do" class="nav-link">What We Do</a>
+                    <a href="#how-it-works" class="nav-link">How It Works</a>
+                    <a href="#why-rrg" class="nav-link">Why RRG</a>
+                    <a href="#industries" class="nav-link">Industries</a>
+                    <a href="contact.html" class="btn-primary px-6 py-3 text-sm rounded-full">Get Started</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HERO -->
+        <section id="hero" class="min-h-screen flex items-center pt-20 py-24">
+            <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+                <h1 class="text-6xl md:text-7xl font-bold leading-none tracking-tighter mb-6">
+                    The revenue sitting in your database<br>isn't dead.
+                </h1>
+                <p class="text-xl md:text-2xl max-w-2xl mx-auto text-white/70 mb-12">
+                    Revenue Recovery Group reactivates stale, dormant, and underworked leads through structured follow-up systems, AI-assisted communication, and disciplined execution.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="btn-primary">Get Started</a>
+                    <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROBLEM -->
+        <section id="problem" class="py-24 bg-black">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold section-header inline-block pb-4">Most businesses don't just lose leads.<br>They lose revenue.</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="text-lg text-white/70">
+                        <p>You invest heavily in lead generation. You pay for inquiries, conversations, and opportunities.</p>
+                        <p class="mt-6">Then timing slips, follow-up breaks, systems disconnect, and databases go cold. The revenue you already paid to acquire simply disappears.</p>
+                    </div>
+                    <div class="glass-card p-10">
+                        <div class="space-y-8 text-sm uppercase tracking-widest font-medium">
+                            <div class="flex justify-between"><span class="text-white/50">Leads acquired</span><span class="font-mono text-white">100%</span></div>
+                            <div class="flex justify-between"><span class="text-white/50">Effectively worked</span><span class="font-mono text-white/40">~28%</span></div>
+                            <div class="h-px bg-white/10"></div>
+                            <div class="text-center text-white font-semibold text-lg">The majority is often recoverable revenue</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- WHAT WE DO -->
-    <section id="what-we-do" class="py-24">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block">Recover the revenue hidden in your database</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
-                    <div class="text-ember text-sm font-medium mb-4">01</div>
-                    <h3 class="text-2xl font-semibold mb-3">Dead Lead Recovery</h3>
-                    <p class="text-slate-400">Systematic reactivation campaigns that bring back leads previously written off as lost.</p>
-                </div>
-                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
-                    <div class="text-ember text-sm font-medium mb-4">02</div>
-                    <h3 class="text-2xl font-semibold mb-3">Database Reactivation</h3>
-                    <p class="text-slate-400">Full-lifecycle re-engagement of dormant customer and prospect records.</p>
-                </div>
-                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
-                    <div class="text-ember text-sm font-medium mb-4">03</div>
-                    <h3 class="text-2xl font-semibold mb-3">AI-Assisted Follow-Up</h3>
-                    <p class="text-slate-400">Intelligent timing and messaging that scales personalized outreach without losing human nuance.</p>
-                </div>
-                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
-                    <div class="text-ember text-sm font-medium mb-4">04</div>
-                    <h3 class="text-2xl font-semibold mb-3">Human Conversion Support</h3>
-                    <p class="text-slate-400">Trained specialists for warm handoffs and high-stakes closing conversations.</p>
-                </div>
-                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
-                    <div class="text-ember text-sm font-medium mb-4">05</div>
-                    <h3 class="text-2xl font-semibold mb-3">Appointment Setting & Qualification</h3>
-                    <p class="text-slate-400">Precision qualification and scheduling that feeds your sales pipeline with ready opportunities.</p>
-                </div>
-                <div class="bg-slate p-8 rounded-3xl hover:border-ember border border-transparent transition group">
-                    <div class="text-ember text-sm font-medium mb-4">06</div>
-                    <h3 class="text-2xl font-semibold mb-3">Revenue Recovery Systems</h3>
-                    <p class="text-slate-400">Custom operational frameworks that prevent future leakage at the source.</p>
+        <!-- WHAT WE DO -->
+        <section id="what-we-do" class="py-24 bg-black">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block pb-4">Recover the revenue hidden in your database</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card p-8 group">
+                        <div class="text-white/50 text-sm font-medium mb-4">01</div>
+                        <h3 class="text-2xl font-semibold mb-3">Dead Lead Recovery</h3>
+                        <p class="text-white/60">Systematic reactivation campaigns that bring back leads previously written off as lost.</p>
+                    </div>
+                    <div class="glass-card p-8 group">
+                        <div class="text-white/50 text-sm font-medium mb-4">02</div>
+                        <h3 class="text-2xl font-semibold mb-3">Database Reactivation</h3>
+                        <p class="text-white/60">Full-lifecycle re-engagement of dormant customer and prospect records.</p>
+                    </div>
+                    <div class="glass-card p-8 group">
+                        <div class="text-white/50 text-sm font-medium mb-4">03</div>
+                        <h3 class="text-2xl font-semibold mb-3">AI-Assisted Follow-Up</h3>
+                        <p class="text-white/60">Intelligent timing and messaging that scales personalized outreach without losing human nuance.</p>
+                    </div>
+                    <div class="glass-card p-8 group">
+                        <div class="text-white/50 text-sm font-medium mb-4">04</div>
+                        <h3 class="text-2xl font-semibold mb-3">Human Conversion Support</h3>
+                        <p class="text-white/60">Trained specialists for warm handoffs and high-stakes closing conversations.</p>
+                    </div>
+                    <div class="glass-card p-8 group">
+                        <div class="text-white/50 text-sm font-medium mb-4">05</div>
+                        <h3 class="text-2xl font-semibold mb-3">Appointment Setting & Qualification</h3>
+                        <p class="text-white/60">Precision qualification and scheduling that feeds your sales pipeline with ready opportunities.</p>
+                    </div>
+                    <div class="glass-card p-8 group">
+                        <div class="text-white/50 text-sm font-medium mb-4">06</div>
+                        <h3 class="text-2xl font-semibold mb-3">Revenue Recovery Systems</h3>
+                        <p class="text-white/60">Custom operational frameworks that prevent future leakage at the source.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- HOW IT WORKS -->
-    <section id="how-it-works" class="py-24 bg-slate">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block">How Revenue Recovery Works</h2>
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-ember text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">1</div>
-                    <h3 class="font-semibold mb-2">Identify</h3>
-                    <p class="text-slate-400">We audit your database and surface neglected, stale, or dormant opportunities.</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-ember text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">2</div>
-                    <h3 class="font-semibold mb-2">Prioritize</h3>
-                    <p class="text-slate-400">We improve timing visibility and prioritize stronger moments to re-engage.</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-ember text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">3</div>
-                    <h3 class="font-semibold mb-2">Re-engage</h3>
-                    <p class="text-slate-400">AI-assisted + human workflows execute precise, timely follow-up.</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-ember text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">4</div>
-                    <h3 class="font-semibold mb-2">Convert</h3>
-                    <p class="text-slate-400">Qualified conversations are routed for warm transfer and closing.</p>
+        <!-- HOW IT WORKS -->
+        <section id="how-it-works" class="py-24 bg-black">
+            <div class="max-w-5xl mx-auto px-6">
+                <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block pb-4">How Revenue Recovery Works</h2>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-white/5 border border-white/10 text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">1</div>
+                        <h3 class="font-semibold mb-2">Identify</h3>
+                        <p class="text-white/60">We audit your database and surface neglected, stale, or dormant opportunities.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-white/5 border border-white/10 text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">2</div>
+                        <h3 class="font-semibold mb-2">Prioritize</h3>
+                        <p class="text-white/60">We improve timing visibility and prioritize stronger moments to re-engage.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-white/5 border border-white/10 text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">3</div>
+                        <h3 class="font-semibold mb-2">Re-engage</h3>
+                        <p class="text-white/60">AI-assisted + human workflows execute precise, timely follow-up.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-white/5 border border-white/10 text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold mb-6">4</div>
+                        <h3 class="font-semibold mb-2">Convert</h3>
+                        <p class="text-white/60">Qualified conversations are routed for warm transfer and closing.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- WHY RRG -->
-    <section id="why-rrg" class="py-24">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block">Why Revenue Recovery Group</h2>
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="space-y-8">
-                    <div><strong class="text-ember">Existing database value</strong><p class="text-slate-400 mt-2">We treat your current data as your most valuable asset — not a cost center.</p></div>
-                    <div><strong class="text-ember">Timing intelligence</strong><p class="text-slate-400 mt-2">We improve visibility into when opportunities are ready to be re-engaged.</p></div>
-                </div>
-                <div class="space-y-8">
-                    <div><strong class="text-ember">Operational consistency</strong><p class="text-slate-400 mt-2">Disciplined systems replace sporadic or forgotten follow-up.</p></div>
-                    <div><strong class="text-ember">AI + human balance</strong><p class="text-slate-400 mt-2">Technology accelerates, humans close.</p></div>
-                </div>
-                <div class="space-y-8">
-                    <div><strong class="text-ember">Conversion discipline</strong><p class="text-slate-400 mt-2">We measure recovered revenue, not just activity.</p></div>
+        <!-- WHY RRG -->
+        <section id="why-rrg" class="py-24 bg-black">
+            <div class="max-w-5xl mx-auto px-6">
+                <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block pb-4">Why Revenue Recovery Group</h2>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="space-y-8">
+                        <div><strong class="text-white">Existing database value</strong><p class="text-white/60 mt-2">We treat your current data as your most valuable asset — not a cost center.</p></div>
+                        <div><strong class="text-white">Timing intelligence</strong><p class="text-white/60 mt-2">We improve visibility into when opportunities are ready to be re-engaged.</p></div>
+                    </div>
+                    <div class="space-y-8">
+                        <div><strong class="text-white">Operational consistency</strong><p class="text-white/60 mt-2">Disciplined systems replace sporadic or forgotten follow-up.</p></div>
+                        <div><strong class="text-white">AI + human balance</strong><p class="text-white/60 mt-2">Technology accelerates, humans close.</p></div>
+                    </div>
+                    <div class="space-y-8">
+                        <div><strong class="text-white">Conversion discipline</strong><p class="text-white/60 mt-2">We measure recovered revenue, not just activity.</p></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- INDUSTRIES -->
-    <section id="industries" class="py-24 bg-slate">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block">Built for High-Value Revenue Recovery</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-charcoal p-8 rounded-3xl">
-                    <h3 class="text-2xl font-semibold mb-2">Lending / Mortgage</h3>
-                    <p class="text-slate-400">Reactivate stalled applications and dormant borrower databases.</p>
-                </div>
-                <div class="bg-charcoal p-8 rounded-3xl">
-                    <h3 class="text-2xl font-semibold mb-2">Real Estate</h3>
-                    <p class="text-slate-400">Re-engage past buyers, sellers, and expired listings.</p>
-                </div>
-                <div class="bg-charcoal p-8 rounded-3xl">
-                    <h3 class="text-2xl font-semibold mb-2">Recruiting</h3>
-                    <p class="text-slate-400">Revive candidate pipelines and talent pools.</p>
-                </div>
-                <div class="bg-charcoal p-8 rounded-3xl">
-                    <h3 class="text-2xl font-semibold mb-2">High-Ticket Services</h3>
-                    <p class="text-slate-400">Recover lost opportunities in any follow-up-dependent industry.</p>
+        <!-- INDUSTRIES -->
+        <section id="industries" class="py-24 bg-black">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block pb-4">Built for High-Value Revenue Recovery</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8">
+                        <h3 class="text-2xl font-semibold mb-2">Lending / Mortgage</h3>
+                        <p class="text-white/60">Reactivate stalled applications and dormant borrower databases.</p>
+                    </div>
+                    <div class="glass-card p-8">
+                        <h3 class="text-2xl font-semibold mb-2">Real Estate</h3>
+                        <p class="text-white/60">Re-engage past buyers, sellers, and expired listings.</p>
+                    </div>
+                    <div class="glass-card p-8">
+                        <h3 class="text-2xl font-semibold mb-2">Recruiting</h3>
+                        <p class="text-white/60">Revive candidate pipelines and talent pools.</p>
+                    </div>
+                    <div class="glass-card p-8">
+                        <h3 class="text-2xl font-semibold mb-2">High-Ticket Services</h3>
+                        <p class="text-white/60">Recover lost opportunities in any follow-up-dependent industry.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- TECHNOLOGY + HUMAN MODEL -->
-    <section class="py-24">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-bold mb-8 section-header inline-block">Technology-Assisted. Human-Verified. Revenue-Focused.</h2>
-            <p class="max-w-2xl mx-auto text-lg text-slate-300">
-                AI accelerates discovery, prioritization, and outreach. Humans provide the trust, nuance, and closing power that turns conversations into recovered revenue.
-            </p>
-        </div>
-    </section>
-
-    <!-- FUTURE-READY -->
-    <section class="py-24 bg-slate">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block">Built for the Next Generation of Revenue Recovery</h2>
-            <div class="prose prose-invert max-w-none text-slate-300">
-                <p class="text-lg">Our platform is architected for continuous evolution — lifecycle detection, signal-based prioritization, and increasingly precise follow-up systems that grow with your business.</p>
+        <!-- TECHNOLOGY + HUMAN MODEL -->
+        <section class="py-24 bg-black">
+            <div class="max-w-5xl mx-auto px-6 text-center">
+                <h2 class="text-5xl font-bold mb-8 section-header inline-block pb-4">Technology-Assisted. Human-Verified. Revenue-Focused.</h2>
+                <p class="max-w-2xl mx-auto text-lg text-white/70">
+                    AI accelerates discovery, prioritization, and outreach. Humans provide the trust, nuance, and closing power that turns conversations into recovered revenue.
+                </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FINAL CTA -->
-    <section class="py-24 border-t border-slate">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-bold mb-6">Start the Conversation</h2>
-            <p class="text-xl text-slate-300 mb-10">Tell us about your database, lead flow, or revenue recovery challenge. Our team will follow up as soon as possible.</p>
-            <a href="contact.html" class="inline-block bg-ember hover:bg-orange-700 text-white px-12 py-6 rounded-3xl text-xl font-semibold transition">Contact Revenue Recovery Group</a>
-        </div>
-    </section>
+        <!-- FUTURE-READY -->
+        <section class="py-24 bg-black">
+            <div class="max-w-5xl mx-auto px-6">
+                <h2 class="text-5xl font-bold text-center mb-16 section-header inline-block pb-4">Built for the Next Generation of Revenue Recovery</h2>
+                <div class="max-w-none text-white/70">
+                    <p class="text-lg">Our platform is architected for continuous evolution — lifecycle detection, signal-based prioritization, and increasingly precise follow-up systems that grow with your business.</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- REAL ESTATE LINE -->
-    <div class="bg-slate py-8 text-center text-sm text-slate-400 border-t border-slate">
-        We also assist individuals with real estate inquiries, including buying, selling, and property-related services.
+        <!-- FINAL CTA -->
+        <section class="py-24 border-t border-white/10">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-5xl font-bold mb-6">Start the Conversation</h2>
+                <p class="text-xl text-white/70 mb-10">Tell us about your database, lead flow, or revenue recovery challenge. Our team will follow up as soon as possible.</p>
+                <a href="contact.html" class="inline-block btn-primary">Contact Revenue Recovery Group</a>
+            </div>
+        </section>
+
+        <!-- REAL ESTATE LINE -->
+        <div class="bg-black py-8 text-center text-sm text-white/40 border-t border-white/10">
+            We also assist individuals with real estate inquiries, including buying, selling, and property-related services.
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="bg-black py-16 border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="rrg-logo">RRG</div>
+                        <div class="font-bold text-lg">Revenue Recovery Group</div>
+                    </div>
+                    <p class="text-xs text-white/40">M+RE Recruiting LLC dba The MORE Companies</p>
+                </div>
+                <div class="space-y-3 text-sm">
+                    <a href="contact.html" class="block nav-link">Contact / Get Started</a>
+                    <a href="privacy-policy.html" class="block nav-link">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="block nav-link">Terms of Service</a>
+                </div>
+                <div class="text-xs text-white/40 md:col-span-2">
+                    © 2026 Revenue Recovery Group. All rights reserved.
+                </div>
+            </div>
+        </footer>
+
     </div>
-
-    <!-- FOOTER -->
-    <footer class="bg-black py-16">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-9 h-9 bg-ember rounded-full flex items-center justify-center text-white font-bold text-2xl">R</div>
-                    <div class="font-bold text-lg">Revenue Recovery Group</div>
-                </div>
-                <p class="text-xs text-slate-500">M+RE Recruiting LLC dba The MORE Companies</p>
-            </div>
-            <div class="space-y-3 text-sm">
-                <a href="contact.html" class="block hover:text-ember">Contact / Get Started</a>
-                <a href="privacy-policy.html" class="block hover:text-ember">Privacy Policy</a>
-                <a href="terms-of-service.html" class="block hover:text-ember">Terms of Service</a>
-            </div>
-            <div class="text-xs text-slate-500 md:col-span-2">
-                © 2026 Revenue Recovery Group. All rights reserved.
-            </div>
-        </div>
-    </footer>
 
 </body>
 </html>

@@ -5,127 +5,268 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Revenue Recovery Group</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             content: ["*"],
             theme: {
                 extend: {
                     fontFamily: {
-                        heading: ['"Playfair Display"', 'serif'],
                         body: ['Inter', 'sans-serif']
-                    },
-                    colors: {
-                        charcoal: '#0F172A',
-                        slate: '#1E2937',
-                        ember: '#C2410C',
-                        offwhite: '#F8FAFC'
                     }
                 }
             }
-        };
+        }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2 { font-family: 'Playfair Display', serif; }
+        @keyframes driftSlow {
+            0% { transform: translate3d(-2%, 0, 0) scaleX(1.02); }
+            50% { transform: translate3d(2%, 1%, 0) scaleX(0.99); }
+            100% { transform: translate3d(-2%, 0, 0) scaleX(1.02); }
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: #000;
+        }
+        
+        h1, h2 { 
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Multi-layer wave animation */
+        @keyframes wave1 {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(100%) translateY(0); }
+        }
+        
+        @keyframes wave2 {
+            0% { transform: translateX(-100%) translateY(10px); }
+            100% { transform: translateX(0%) translateY(10px); }
+        }
+        
+        @keyframes wave3 {
+            0% { transform: translateX(0) translateY(-5px); }
+            100% { transform: translateX(100%) translateY(-5px); }
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .wave-layer {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            opacity: 0.15;
+        }
+
+        /* RRG Logo */
+        .rrg-logo {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50%;
+            backdrop-filter: blur(8px);
+            color: white;
+            position: relative;
+        }
+
+        .wave-layer-1 {
+            bottom: 30%;
+            animation: wave1 20s linear infinite;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 20px rgba(255,255,255,0.15);
+        }
+
+        .wave-layer-2 {
+            bottom: 35%;
+            animation: wave2 25s linear infinite;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+
+        .wave-layer-3 {
+            bottom: 40%;
+            animation: wave3 30s linear infinite;
+            border-top: 1px solid rgba(255,255,255,0.18);
+            box-shadow: 0 0 18px rgba(255,255,255,0.12);
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Glass morphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Form inputs */
+        input, select, textarea {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            outline: none !important;
+        }
+
+        /* Button */
+        .btn-submit {
+            background: white;
+            color: black;
+            border: 1px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .nav-link {
+            color: white;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 0.7;
+        }
     </style>
 </head>
-<body class="bg-charcoal text-offwhite min-h-screen">
+<body class="bg-black text-white min-h-screen">
 
-    <!-- NAV -->
-    <nav class="fixed top-0 left-0 right-0 bg-charcoal/95 backdrop-blur-md z-50 border-b border-slate">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-ember rounded-full flex items-center justify-center text-white font-bold text-2xl">R</div>
-                <span class="text-2xl font-bold tracking-tight">Revenue Recovery Group</span>
-            </div>
-            <a href="index.html" class="text-sm font-medium hover:text-ember">← Back to Homepage</a>
-        </div>
-    </nav>
-
-    <div class="pt-24 pb-20 max-w-3xl mx-auto px-6">
-        <h1 class="text-5xl font-bold text-center mb-6">Contact Revenue Recovery Group</h1>
-        <p class="text-xl text-slate-300 text-center mb-4">Revenue Recovery Group assists businesses with revenue recovery, lead reactivation, follow-up systems, database conversion, and related services.</p>
-        <p class="text-xl text-slate-300 text-center mb-16">Complete the form below to request information or a follow-up from our team.</p>
-
-        <form action="https://formspree.io/f/mdawjdqq" method="POST" class="bg-slate p-10 rounded-3xl space-y-8">
-            <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                    <label class="block text-sm font-medium mb-2">Full Name</label>
-                    <input type="text" name="full_name" class="w-full bg-charcoal border border-slate rounded-2xl px-6 py-4 focus:outline-none focus:border-ember" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium mb-2">Company Name</label>
-                    <input type="text" name="company_name" class="w-full bg-charcoal border border-slate rounded-2xl px-6 py-4 focus:outline-none focus:border-ember">
-                </div>
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium mb-2">Email Address</label>
-                <input type="email" name="email" class="w-full bg-charcoal border border-slate rounded-2xl px-6 py-4 focus:outline-none focus:border-ember" required>
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium mb-2">Phone Number</label>
-                <input type="tel" name="phone" class="w-full bg-charcoal border border-slate rounded-2xl px-6 py-4 focus:outline-none focus:border-ember" required>
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium mb-2">Inquiry Type</label>
-                <select name="inquiry_type" class="w-full bg-charcoal border border-slate rounded-2xl px-6 py-4 focus:outline-none focus:border-ember">
-                    <option>Select an inquiry type</option>
-                    <option>Lending / Mortgage</option>
-                    <option>Real Estate</option>
-                    <option>Recruiting</option>
-                    <option>Database Reactivation</option>
-                    <option>Revenue Recovery</option>
-                    <option>General Inquiry</option>
-                </select>
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium mb-2">Message (optional)</label>
-                <textarea name="message" class="w-full bg-charcoal border border-slate rounded-3xl px-6 py-4 h-32 focus:outline-none focus:border-ember"></textarea>
-            </div>
-
-            <!-- CHECKBOX -->
-            <div class="flex items-start gap-3">
-                <input type="checkbox" id="smsConsent" name="sms_consent" value="yes" class="mt-1" required>
-                <label for="smsConsent" class="text-sm text-slate-300 cursor-pointer">
-                    I agree to receive text messages from M+RE Recruiting LLC dba The MORE Companies regarding my inquiry, services, and related updates. Message frequency varies. Message and data rates may apply. Reply STOP to opt out and HELP for help. Consent is not a condition of purchase.
-                </label>
-            </div>
-
-            <button type="submit" class="w-full bg-ember hover:bg-orange-700 text-white py-6 rounded-3xl text-lg font-semibold transition">Submit Inquiry</button>
-        </form>
+    <!-- Animated background -->
+    <div class="animated-bg">
+        <div class="wave-layer wave-layer-1"></div>
+        <div class="wave-layer wave-layer-2"></div>
+        <div class="wave-layer wave-layer-3"></div>
     </div>
 
-    <!-- REAL ESTATE LINE -->
-    <div class="bg-slate py-8 text-center text-sm text-slate-400 border-t border-slate">
-        We also assist individuals with real estate inquiries, including buying, selling, and property-related services.
-    </div>
+    <div class="content-wrapper">
 
-    <!-- FOOTER -->
-    <footer class="bg-black py-16">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-9 h-9 bg-ember rounded-full flex items-center justify-center text-white font-bold text-2xl">R</div>
-                    <div class="font-bold text-lg">Revenue Recovery Group</div>
+        <!-- NAV -->
+        <nav class="fixed top-0 left-0 right-0 bg-black/30 backdrop-blur-md z-50 border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="rrg-logo">RRG</div>
+                    <span class="text-2xl font-bold tracking-tight">Revenue Recovery Group</span>
                 </div>
-                <p class="text-xs text-slate-500">M+RE Recruiting LLC dba The MORE Companies</p>
+                <a href="index.html" class="text-sm font-medium nav-link">← Back to Homepage</a>
             </div>
-            <div class="space-y-3 text-sm">
-                <a href="contact.html" class="block hover:text-ember">Contact / Get Started</a>
-                <a href="privacy-policy.html" class="block hover:text-ember">Privacy Policy</a>
-                <a href="terms-of-service.html" class="block hover:text-ember">Terms of Service</a>
-            </div>
-            <div class="text-xs text-slate-500 md:col-span-2">
-                © 2026 Revenue Recovery Group. All rights reserved.
-            </div>
+        </nav>
+
+        <div class="pt-24 pb-20 max-w-3xl mx-auto px-6">
+            <h1 class="text-5xl font-bold text-center mb-6">Contact Revenue Recovery Group</h1>
+            <p class="text-xl text-white/70 text-center mb-4">Revenue Recovery Group assists businesses with revenue recovery, lead reactivation, follow-up systems, database conversion, and related services.</p>
+            <p class="text-xl text-white/70 text-center mb-16">Complete the form below to request information or a follow-up from our team.</p>
+
+            <form action="https://formspree.io/f/mdawjdqq" method="POST" class="glass-card p-10 rounded-3xl space-y-8">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Full Name</label>
+                        <input type="text" name="full_name" class="w-full rounded-2xl px-6 py-4" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Company Name</label>
+                        <input type="text" name="company_name" class="w-full rounded-2xl px-6 py-4">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2">Email Address</label>
+                    <input type="email" name="email" class="w-full rounded-2xl px-6 py-4" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2">Phone Number</label>
+                    <input type="tel" name="phone" class="w-full rounded-2xl px-6 py-4" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2">Inquiry Type</label>
+                    <select name="inquiry_type" class="w-full rounded-2xl px-6 py-4">
+                        <option style="background: black; color: white;">Select an inquiry type</option>
+                        <option style="background: black; color: white;">Lending / Mortgage</option>
+                        <option style="background: black; color: white;">Real Estate</option>
+                        <option style="background: black; color: white;">Recruiting</option>
+                        <option style="background: black; color: white;">Database Reactivation</option>
+                        <option style="background: black; color: white;">Revenue Recovery</option>
+                        <option style="background: black; color: white;">General Inquiry</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2">Message (optional)</label>
+                    <textarea name="message" class="w-full rounded-3xl px-6 py-4 h-32"></textarea>
+                </div>
+
+                <!-- CHECKBOX -->
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="smsConsent" name="sms_consent" value="yes" class="mt-1" required>
+                    <label for="smsConsent" class="text-sm text-white/70 cursor-pointer">
+                        I agree to receive text messages from M+RE Recruiting LLC dba The MORE Companies regarding my inquiry, services, and related updates. Message frequency varies. Message and data rates may apply. Reply STOP to opt out and HELP for help. Consent is not a condition of purchase.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit w-full py-6 rounded-3xl text-lg font-semibold">Submit Inquiry</button>
+            </form>
         </div>
-    </footer>
+
+        <!-- REAL ESTATE LINE -->
+        <div class="bg-black py-8 text-center text-sm text-white/40 border-t border-white/10">
+            We also assist individuals with real estate inquiries, including buying, selling, and property-related services.
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="bg-black py-16 border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="rrg-logo">RRG</div>
+                        <div class="font-bold text-lg">Revenue Recovery Group</div>
+                    </div>
+                    <p class="text-xs text-white/40">M+RE Recruiting LLC dba The MORE Companies</p>
+                </div>
+                <div class="space-y-3 text-sm">
+                    <a href="contact.html" class="block nav-link">Contact / Get Started</a>
+                    <a href="privacy-policy.html" class="block nav-link">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="block nav-link">Terms of Service</a>
+                </div>
+                <div class="text-xs text-white/40 md:col-span-2">
+                    © 2026 Revenue Recovery Group. All rights reserved.
+                </div>
+            </div>
+        </footer>
+
+    </div>
 
 </body>
 </html>
